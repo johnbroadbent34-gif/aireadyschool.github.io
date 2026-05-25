@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Ready Schools | Staff-first AI adoption for schools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--navy:#0B1F3A;--navy-mid:#163055;--teal:#1D9E75;--teal-light:#E1F5EE;--teal-mid:#9FE1CB;--amber:#EF9F27;--amber-light:#FAEEDA;--off-white:#F7F5F0;--text-dark:#0B1F3A;--text-mid:#4A5568;--text-light:#718096;--border:rgba(11,31,58,0.12)}
+  body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--text-dark);font-size:16px;line-height:1.6}
+  nav{background:var(--navy);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:'Fraunces',serif;font-weight:700;font-size:20px;color:#fff;text-decoration:none}
+  .nav-logo span{color:var(--teal-mid)}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:rgba(255,255,255,0.75);text-decoration:none;font-size:14px}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{background:var(--teal);color:#fff!important;padding:8px 20px;border-radius:6px;font-weight:500!important}
+  .hero{background:var(--navy);padding:96px 48px 80px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:480px;height:480px;background:radial-gradient(circle,rgba(29,158,117,0.18) 0%,transparent 70%);pointer-events:none}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(29,158,117,0.15);border:0.5px solid rgba(29,158,117,0.35);color:var(--teal-mid);font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:28px}
+  .hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50%;flex-shrink:0}
+  .hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:56px;line-height:1.1;color:#fff;max-width:680px;letter-spacing:-1px;margin-bottom:24px}
+  .hero h1 em{font-style:italic;color:var(--teal-mid)}
+  .hero-sub{font-size:18px;color:rgba(255,255,255,0.65);max-width:520px;line-height:1.7;margin-bottom:40px;font-weight:300}
+  .hero-actions{display:flex;gap:16px;align-items:center}
+  .btn-primary{background:var(--teal);color:#fff;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:500;text-decoration:none;border:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+  .btn-primary:hover{background:#0F6E56}
+  .btn-ghost{color:rgba(255,255,255,0.75);font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer}
+  .btn-ghost:hover{color:#fff}
+  .hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:48px;border-top:0.5px solid rgba(255,255,255,0.1)}
+  .stat-num{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:#fff;line-height:1}
+  .stat-num span{color:var(--teal-mid)}
+  .stat-label{font-size:13px;color:rgba(255,255,255,0.5);margin-top:6px}
+  .section{padding:80px 48px}
+  .section-label{font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+  .section-title{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--navy);letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;max-width:560px}
+  .section-body{font-size:16px;color:var(--text-mid);max-width:520px;line-height:1.7;margin-bottom:48px}
+  .pillars{background:#fff}
+  .pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+  .pillar-card{background:var(--off-white);border:0.5px solid var(--border);border-radius:12px;padding:28px}
+  .pillar-title{font-family:'Fraunces',serif;font-size:18px;font-weight:500;color:var(--navy);margin-bottom:10px}
+  .pillar-text{font-size:14px;color:var(--text-mid);line-height:1.65}
+  .pillar-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px}
+  .pillar-icon.teal{background:var(--teal-light)}
+  .pillar-icon.amber{background:var(--amber-light)}
+  .pillar-icon.navy{background:rgba(11,31,58,0.08)}
+  .approach{background:var(--navy)}
+  .approach .section-title{color:#fff}
+  .approach .section-label{color:var(--teal-mid)}
+  .approach .section-body{color:rgba(255,255,255,0.6)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.1);border-radius:12px;overflow:hidden;margin-top:48px}
+  .step{background:var(--navy-mid);padding:28px 24px}
+  .step-num{font-family:'Fraunces',serif;font-size:40px;font-weight:700;color:rgba(255,255,255,0.1);line-height:1;margin-bottom:16px}
+  .step-title{font-size:15px;font-weight:500;color:#fff;margin-bottom:8px}
+  .step-text{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+  .latest{background:var(--off-white)}
+  .posts-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px;margin-top:48px}
+  .post-card{background:#fff;border:0.5px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;display:block}
+  .post-card:hover .post-title{color:var(--teal)}
+  .post-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px}
+  .post-thumb.navy{background:var(--navy)}
+  .post-thumb.teal{background:var(--teal-light)}
+  .post-thumb.amber{background:var(--amber-light)}
+  .post-body{padding:20px}
+  .post-tag{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;color:var(--teal);background:var(--teal-light);padding:4px 10px;border-radius:100px;display:inline-block;margin-bottom:12px}
+  .post-title{font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--navy);line-height:1.3;margin-bottom:10px;transition:color 0.2s}
+  .post-card.featured .post-title{font-size:22px}
+  .post-excerpt{font-size:14px;color:var(--text-mid);line-height:1.6;margin-bottom:12px}
+  .post-meta{font-size:12px;color:var(--text-light);display:flex;align-items:center;gap:12px}
+  .cta-section{background:var(--teal);padding:80px 48px;text-align:center}
+  .cta-section h2{font-family:'Fraunces',serif;font-size:40px;font-weight:700;color:#fff;letter-spacing:-0.5px;margin-bottom:16px}
+  .cta-section p{font-size:17px;color:rgba(255,255,255,0.8);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+  .btn-white{background:#fff;color:var(--teal);padding:14px 32px;border-radius:8px;font-size:15px;font-weight:500;text-decoration:none;display:inline-block;border:none;cursor:pointer}
+  footer{background:var(--navy);padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .footer-logo{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff}
+  .footer-logo span{color:var(--teal-mid)}
+  .footer-links{display:flex;gap:24px;list-style:none}
+  .footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:13px}
+  .footer-copy{font-size:13px;color:rgba(255,255,255,0.3)}
+</style>
+</head>
+<body>
+<nav>
+  <a href="homepage.html" class="nav-logo">AI Ready <span>Schools</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">For Leaders</a></li>
+    <li><a href="landing-page-free-guide.html" class="nav-cta">Get the guide</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-eyebrow">For school leaders</div>
+  <h1>AI adoption, done <em>thoughtfully.</em></h1>
+  <p class="hero-sub">Helping headteachers and senior leaders implement AI with confidence — safely, ethically, and with your staff at the centre.</p>
+  <div class="hero-actions">
+    <a href="blog.html" class="btn-primary">Start reading ↗</a>
+    <a href="about.html" class="btn-ghost">What is the staff-first approach? →</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">Staff<span>-first</span></div><div class="stat-label">Our guiding philosophy</div></div>
+    <div><div class="stat-num"><span>3</span> pillars</div><div class="stat-label">Understand · Implement · Lead</div></div>
+    <div><div class="stat-num">Zero<span> hype</span></div><div class="stat-label">Practical, grounded guidance</div></div>
+  </div>
+</section>
+<section class="section pillars">
+  <div class="section-label">Our approach</div>
+  <div class="section-title">Built around people, not platforms.</div>
+  <div class="section-body">Technology should serve your school community — not the other way around. Everything here is designed to put staff understanding and wellbeing first.</div>
+  <div class="pillars-grid">
+    <div class="pillar-card"><div class="pillar-icon teal">🧠</div><div class="pillar-title">Understand AI</div><div class="pillar-text">Before implementing anything, staff need to genuinely understand what AI is, what it isn't, and where it sits in their professional context. We cut through the noise.</div></div>
+    <div class="pillar-card"><div class="pillar-icon amber">🛡️</div><div class="pillar-title">Safe &amp; ethical use</div><div class="pillar-text">From data privacy to safeguarding, we help leaders build the guardrails needed to use AI responsibly — aligned with current guidance including KCSIE.</div></div>
+    <div class="pillar-card"><div class="pillar-icon navy">🚀</div><div class="pillar-title">Streamline workload</div><div class="pillar-text">When used well, AI can meaningfully reduce teacher workload. We show schools exactly where and how to apply it — without the trial and error.</div></div>
+  </div>
+</section>
+<section class="section approach">
+  <div class="section-label">The framework</div>
+  <div class="section-title">A measured path to AI readiness.</div>
+  <div class="section-body">No big-bang rollouts. No vendor-led hype. Just a clear, structured approach that takes your whole school community on the journey.</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Build awareness</div><div class="step-text">Give every member of staff a shared, grounded understanding of AI — what it is and what it isn't.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Establish policy</div><div class="step-text">Create clear, ethical frameworks for AI use in your school that protect staff, students and data.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Train with purpose</div><div class="step-text">Targeted CPD that meets staff where they are — building confidence through practice, not theory.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Lead the change</div><div class="step-text">Equip senior leaders to champion responsible AI adoption and sustain momentum across the school.</div></div>
+  </div>
+</section>
+<section class="section latest">
+  <div class="section-label">Latest thinking</div>
+  <div class="section-title">From the blog</div>
+  <div class="posts-grid">
+    <a href="blog-staff-first-strategy.html" class="post-card featured">
+      <div class="post-thumb navy">🏫</div>
+      <div class="post-body">
+        <span class="post-tag">Leadership</span>
+        <div class="post-title">Why your AI strategy needs to start with your staff, not your software</div>
+        <div class="post-excerpt">Most school AI rollouts fail for the same reason — they lead with tools and follow with people. Here's how to flip that approach.</div>
+        <div class="post-meta"><span>8 min read</span><span>·</span><span>October 2025</span></div>
+      </div>
+    </a>
+    <a href="blog-kcsie-2025.html" class="post-card">
+      <div class="post-thumb teal">📋</div>
+      <div class="post-body"><span class="post-tag">Policy</span><div class="post-title">What KCSIE 2025 says about generative AI</div><div class="post-meta"><span>5 min read</span></div></div>
+    </a>
+    <a href="blog-ai-tasks-teachers.html" class="post-card">
+      <div class="post-thumb amber">⚡</div>
+      <div class="post-body"><span class="post-tag">Workload</span><div class="post-title">5 tasks teachers can hand to AI today — without the guilt</div><div class="post-meta"><span>6 min read</span></div></div>
+    </a>
+  </div>
+</section>
+<section class="cta-section">
+  <h2>Ready to lead the shift?</h2>
+  <p>Join school leaders across the country getting practical, no-nonsense guidance on AI in education.</p>
+  <a href="landing-page-free-guide.html" class="btn-white">Get the free guide</a>
+</section>
+<footer>
+  <div class="footer-logo">AI Ready <span>Schools</span></div>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2025 AI Ready Schools</div>
+</footer>
+</body>
+</html>

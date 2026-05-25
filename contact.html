@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | AI Ready Schools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --navy:#0B1F3A; --navy-mid:#163055; --teal:#1D9E75; --teal-light:#E1F5EE;
+    --teal-mid:#9FE1CB; --amber:#EF9F27; --amber-light:#FAEEDA;
+    --off-white:#F7F5F0; --text-dark:#0B1F3A; --text-mid:#4A5568;
+    --text-light:#718096; --border:rgba(11,31,58,0.12);
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--off-white); color:var(--text-dark); font-size:16px; line-height:1.6; }
+
+  nav { background:var(--navy); padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { font-family:'Fraunces',serif; font-weight:700; font-size:20px; color:#fff; text-decoration:none; }
+  .nav-logo span { color:var(--teal-mid); }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:14px; }
+  .nav-links a:hover { color:#fff; }
+  .nav-cta { background:var(--teal); color:#fff !important; padding:8px 20px; border-radius:6px; font-weight:500 !important; }
+
+  .page-header { background:var(--navy); padding:72px 48px 64px; position:relative; overflow:hidden; }
+  .page-header::before { content:''; position:absolute; top:-80px; right:-40px; width:400px; height:400px; background:radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%); pointer-events:none; }
+  .breadcrumb { font-size:13px; color:rgba(255,255,255,0.4); margin-bottom:20px; }
+  .breadcrumb span { color:rgba(255,255,255,0.6); }
+  .page-header h1 { font-family:'Fraunces',serif; font-size:44px; font-weight:700; color:#fff; letter-spacing:-0.8px; line-height:1.15; max-width:600px; margin-bottom:16px; }
+  .page-header h1 em { font-style:italic; color:var(--teal-mid); }
+  .page-header p { font-size:17px; color:rgba(255,255,255,0.6); max-width:480px; line-height:1.7; font-weight:300; }
+
+  .contact-body { max-width:1100px; margin:0 auto; padding:80px 48px; display:grid; grid-template-columns:1fr 480px; gap:80px; align-items:start; }
+
+  /* LEFT SIDE */
+  .contact-info {}
+  .section-label { font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; }
+  .contact-info h2 { font-family:'Fraunces',serif; font-size:32px; font-weight:700; color:var(--navy); letter-spacing:-0.4px; line-height:1.2; margin-bottom:16px; }
+  .contact-info p { font-size:16px; color:var(--text-mid); line-height:1.8; margin-bottom:32px; }
+
+  .contact-reasons { display:flex; flex-direction:column; gap:12px; margin-bottom:40px; }
+  .reason { display:flex; align-items:flex-start; gap:14px; background:#fff; border:0.5px solid var(--border); border-radius:10px; padding:16px 18px; }
+  .reason-icon { font-size:20px; flex-shrink:0; margin-top:1px; }
+  .reason-title { font-size:14px; font-weight:500; color:var(--navy); margin-bottom:3px; }
+  .reason-text { font-size:13px; color:var(--text-mid); line-height:1.55; }
+
+  .response-note { background:var(--teal-light); border:0.5px solid rgba(29,158,117,0.25); border-left:3px solid var(--teal); border-radius:0 8px 8px 0; padding:16px 20px; }
+  .response-note p { font-size:14px; color:var(--navy); line-height:1.65; margin-bottom:0; }
+  .response-note strong { color:var(--teal); }
+
+  /* RIGHT SIDE — FORM */
+  .form-card { background:#fff; border:0.5px solid var(--border); border-radius:16px; padding:36px; }
+  .form-card h3 { font-family:'Fraunces',serif; font-size:22px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .form-card p { font-size:14px; color:var(--text-mid); margin-bottom:28px; line-height:1.6; }
+
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:13px; font-weight:500; color:var(--text-dark); margin-bottom:6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:15px; font-family:'DM Sans',sans-serif; color:var(--text-dark); background:var(--off-white); transition:border-color 0.2s, background 0.2s; outline:none; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color:var(--teal); background:#fff; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color:var(--text-light); }
+  .form-group textarea { resize:vertical; min-height:120px; line-height:1.6; }
+  .form-group select { appearance:none; cursor:pointer; }
+
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+  .btn-submit { width:100%; background:var(--teal); color:#fff; border:none; padding:14px; border-radius:8px; font-size:16px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; transition:background 0.2s; margin-top:4px; }
+  .btn-submit:hover { background:#0F6E56; }
+
+  .form-note { font-size:12px; color:var(--text-light); text-align:center; margin-top:12px; line-height:1.5; }
+  .form-note a { color:var(--teal); text-decoration:none; }
+
+  /* SUCCESS STATE */
+  .success-state { display:none; text-align:center; padding:40px 20px; }
+  .success-icon { font-size:48px; margin-bottom:16px; }
+  .success-title { font-family:'Fraunces',serif; font-size:24px; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .success-text { font-size:15px; color:var(--text-mid); line-height:1.7; }
+
+  /* ALTERNATIVES */
+  .alternatives { background:var(--navy); padding:64px 48px; }
+  .alternatives-inner { max-width:1100px; margin:0 auto; }
+  .alternatives h2 { font-family:'Fraunces',serif; font-size:28px; font-weight:700; color:#fff; letter-spacing:-0.4px; margin-bottom:32px; }
+  .alt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .alt-card { background:rgba(255,255,255,0.05); border:0.5px solid rgba(255,255,255,0.1); border-radius:12px; padding:24px; }
+  .alt-icon { font-size:24px; margin-bottom:12px; }
+  .alt-title { font-size:15px; font-weight:500; color:#fff; margin-bottom:6px; }
+  .alt-text { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.6; }
+  .alt-link { display:inline-block; margin-top:12px; font-size:13px; color:var(--teal-mid); text-decoration:none; }
+  .alt-link:hover { color:#fff; }
+
+  footer { background:var(--navy); padding:40px 48px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:0.5px solid rgba(255,255,255,0.08); }
+  .footer-logo { font-family:'Fraunces',serif; font-size:18px; font-weight:700; color:#fff; }
+  .footer-logo span { color:var(--teal-mid); }
+  .footer-links { display:flex; gap:24px; list-style:none; }
+  .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:13px; }
+  .footer-copy { font-size:13px; color:rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">AI Ready <span>Schools</span></a>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">For Leaders</a></li>
+    <li><a href="#" class="nav-cta">Get the guide</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Home <span>/ Contact</span></div>
+  <h1>Let's talk about <em>AI in your school.</em></h1>
+  <p>Whether you have a question, want to share your experience, or are exploring how AI Ready Schools can support your leadership team — get in touch.</p>
+</div>
+
+<div class="contact-body">
+  <div class="contact-info">
+    <div class="section-label">Get in touch</div>
+    <h2>How can I help your school?</h2>
+    <p>AI Ready Schools is built around the belief that every school leader deserves practical, honest guidance on implementing AI. If you're at the beginning of that journey, somewhere in the middle, or trying to untangle a decision you've already made — I'm happy to hear from you.</p>
+
+    <div class="contact-reasons">
+      <div class="reason">
+        <div class="reason-icon">💬</div>
+        <div>
+          <div class="reason-title">General questions about AI in schools</div>
+          <div class="reason-text">Not sure where to start, or stuck on a specific challenge? Ask away — no question is too basic.</div>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-icon">📋</div>
+        <div>
+          <div class="reason-title">Policy and governance advice</div>
+          <div class="reason-text">Working on an AI policy and want a second opinion from someone who has done it? Get in touch.</div>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-icon">🎓</div>
+        <div>
+          <div class="reason-title">CPD and staff training enquiries</div>
+          <div class="reason-text">Interested in bringing AI Ready Schools into your school for staff training or a leadership session.</div>
+        </div>
+      </div>
+      <div class="reason">
+        <div class="reason-icon">✍️</div>
+        <div>
+          <div class="reason-title">Suggest a blog topic</div>
+          <div class="reason-text">Is there something you wish someone would write about honestly? Let me know and I'll add it to the list.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="response-note">
+      <p><strong>Response time:</strong> I aim to respond to all messages within 2–3 working days. As a practising deputy headteacher, I read and reply to every message personally — so please bear with me during busy school periods.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <div class="form-card">
+    <h3>Send a message</h3>
+    <p>Fill in the form below and I'll get back to you directly.</p>
+
+    <div id="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" placeholder="Sarah" required>
+        </div>
+        <div class="form-group">
+          <label for="last-name">Last name</label>
+          <input type="text" id="last-name" placeholder="Johnson" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">School email address</label>
+        <input type="email" id="email" placeholder="you@school.sch.uk" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Your role</label>
+        <select id="role">
+          <option value="">Select your role</option>
+          <option>Headteacher / Principal</option>
+          <option>Deputy Headteacher</option>
+          <option>Assistant Headteacher</option>
+          <option>DSL / Safeguarding Lead</option>
+          <option>IT Lead</option>
+          <option>Governor</option>
+          <option>Teacher</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="subject">What's this about?</label>
+        <select id="subject">
+          <option value="">Select a topic</option>
+          <option>General AI question</option>
+          <option>Policy and governance</option>
+          <option>CPD / staff training</option>
+          <option>Blog topic suggestion</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Your message</label>
+        <textarea id="message" placeholder="Tell me what's on your mind — the more context the better..." required></textarea>
+      </div>
+      <button class="btn-submit" onclick="handleSubmit()">Send message →</button>
+      <p class="form-note">Your details are used only to respond to your message. See our <a href="privacy-policy.html">privacy policy</a>.</p>
+    </div>
+
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Message sent — thank you!</div>
+      <div class="success-text">I'll read this personally and get back to you within 2–3 working days. In the meantime, why not explore the blog or download the free AI Readiness Checklist?</div>
+    </div>
+  </div>
+</div>
+
+<section class="alternatives">
+  <div class="alternatives-inner">
+    <h2>Other ways to connect</h2>
+    <div class="alt-grid">
+      <div class="alt-card">
+        <div class="alt-icon">📖</div>
+        <div class="alt-title">Read the blog</div>
+        <div class="alt-text">Practical, policy-grounded articles written for school leaders navigating AI for the first time.</div>
+        <a href="#" class="alt-link">Browse all posts →</a>
+      </div>
+      <div class="alt-card">
+        <div class="alt-icon">🎁</div>
+        <div class="alt-title">Get the free guide</div>
+        <div class="alt-text">Download the AI Readiness Checklist and find out exactly where your school stands right now.</div>
+        <a href="landing-page-free-guide.html" class="alt-link">Get the checklist →</a>
+      </div>
+      <div class="alt-card">
+        <div class="alt-icon">📬</div>
+        <div class="alt-title">Join the mailing list</div>
+        <div class="alt-text">Get new articles and resources straight to your inbox — no spam, unsubscribe any time.</div>
+        <a href="landing-page-free-guide.html" class="alt-link">Sign up free →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AI Ready <span>Schools</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2025 AI Ready Schools</div>
+</footer>
+
+<script>
+  function handleSubmit() {
+    const name = document.getElementById('first-name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    if (!name || !email || !message) {
+      alert('Please fill in your name, email and message before sending.');
+      return;
+    }
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

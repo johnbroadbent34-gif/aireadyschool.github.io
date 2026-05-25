@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | AI Ready Schools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --navy:#0B1F3A; --navy-mid:#163055; --teal:#1D9E75; --teal-light:#E1F5EE;
+    --teal-mid:#9FE1CB; --amber:#EF9F27; --amber-light:#FAEEDA;
+    --off-white:#F7F5F0; --text-dark:#0B1F3A; --text-mid:#4A5568;
+    --text-light:#718096; --border:rgba(11,31,58,0.12);
+  }
+  body { font-family:'DM Sans',sans-serif; background:var(--off-white); color:var(--text-dark); font-size:16px; line-height:1.6; }
+
+  nav { background:var(--navy); padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { font-family:'Fraunces',serif; font-weight:700; font-size:20px; color:#fff; text-decoration:none; }
+  .nav-logo span { color:var(--teal-mid); }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:14px; }
+  .nav-links a.active,
+  .nav-links a:hover { color:#fff; }
+  .nav-cta { background:var(--teal); color:#fff !important; padding:8px 20px; border-radius:6px; font-weight:500 !important; }
+
+  .page-header { background:var(--navy); padding:72px 48px 64px; position:relative; overflow:hidden; }
+  .page-header::before { content:''; position:absolute; top:-80px; right:-40px; width:400px; height:400px; background:radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 70%); pointer-events:none; }
+  .breadcrumb { font-size:13px; color:rgba(255,255,255,0.4); margin-bottom:20px; }
+  .breadcrumb span { color:rgba(255,255,255,0.6); }
+  .page-header h1 { font-family:'Fraunces',serif; font-size:44px; font-weight:700; color:#fff; letter-spacing:-0.8px; line-height:1.15; max-width:600px; margin-bottom:16px; }
+  .page-header h1 em { font-style:italic; color:var(--teal-mid); }
+  .page-header p { font-size:17px; color:rgba(255,255,255,0.6); max-width:480px; line-height:1.7; font-weight:300; }
+
+  /* FILTER TABS */
+  .filter-bar { background:#fff; border-bottom:0.5px solid var(--border); padding:0 48px; }
+  .filter-inner { max-width:1100px; margin:0 auto; display:flex; gap:4px; }
+  .filter-btn { padding:16px 20px; font-size:14px; font-family:'DM Sans',sans-serif; border:none; background:none; cursor:pointer; color:var(--text-light); border-bottom:2px solid transparent; transition:all 0.2s; }
+  .filter-btn:hover { color:var(--text-dark); }
+  .filter-btn.active { color:var(--teal); border-bottom-color:var(--teal); font-weight:500; }
+
+  /* BLOG BODY */
+  .blog-body { max-width:1100px; margin:0 auto; padding:64px 48px; }
+
+  /* FEATURED POST */
+  .featured-post { background:#fff; border:0.5px solid var(--border); border-radius:16px; overflow:hidden; display:grid; grid-template-columns:1fr 420px; margin-bottom:48px; text-decoration:none; }
+  .featured-post:hover .featured-title { color:var(--teal); }
+  .featured-thumb { background:var(--navy); display:flex; align-items:center; justify-content:center; font-size:64px; min-height:280px; position:relative; overflow:hidden; }
+  .featured-thumb::before { content:''; position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:radial-gradient(circle, rgba(29,158,117,0.2) 0%, transparent 70%); }
+  .featured-body { padding:40px; display:flex; flex-direction:column; justify-content:center; }
+  .featured-eyebrow { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
+  .post-tag { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); background:var(--teal-light); padding:4px 10px; border-radius:100px; }
+  .post-tag.amber { color:#854F0B; background:var(--amber-light); }
+  .featured-label { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-light); }
+  .featured-title { font-family:'Fraunces',serif; font-size:26px; font-weight:700; color:var(--navy); letter-spacing:-0.4px; line-height:1.2; margin-bottom:12px; transition:color 0.2s; }
+  .featured-excerpt { font-size:15px; color:var(--text-mid); line-height:1.7; margin-bottom:24px; }
+  .post-meta { display:flex; align-items:center; gap:16px; font-size:13px; color:var(--text-light); }
+  .post-meta-dot { width:3px; height:3px; border-radius:50%; background:var(--border); }
+  .read-more { display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:500; color:var(--teal); margin-top:16px; }
+
+  /* POSTS GRID */
+  .posts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .post-card { background:#fff; border:0.5px solid var(--border); border-radius:12px; overflow:hidden; text-decoration:none; display:block; transition:transform 0.2s, box-shadow 0.2s; }
+  .post-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(11,31,58,0.08); }
+  .post-card:hover .post-card-title { color:var(--teal); }
+  .post-thumb { height:160px; display:flex; align-items:center; justify-content:center; font-size:40px; }
+  .post-thumb.navy { background:var(--navy); }
+  .post-thumb.teal { background:var(--teal-light); }
+  .post-thumb.amber { background:var(--amber-light); }
+  .post-card-body { padding:20px; }
+  .post-card-tag-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .post-card-title { font-family:'Fraunces',serif; font-size:17px; font-weight:500; color:var(--navy); line-height:1.3; margin-bottom:10px; transition:color 0.2s; }
+  .post-card-excerpt { font-size:13px; color:var(--text-mid); line-height:1.6; margin-bottom:14px; }
+  .post-card-meta { font-size:12px; color:var(--text-light); display:flex; gap:10px; }
+
+  /* SECTION DIVIDER */
+  .section-divider { display:flex; align-items:center; gap:16px; margin:56px 0 40px; }
+  .section-divider-label { font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); white-space:nowrap; }
+  .section-divider-line { flex:1; height:0.5px; background:var(--border); }
+
+  /* CTA BANNER */
+  .cta-banner { background:var(--navy); border-radius:16px; padding:40px; display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; margin-top:56px; }
+  .cta-banner h3 { font-family:'Fraunces',serif; font-size:22px; font-weight:700; color:#fff; margin-bottom:8px; }
+  .cta-banner p { font-size:14px; color:rgba(255,255,255,0.6); line-height:1.65; }
+  .btn-teal { background:var(--teal); color:#fff; padding:12px 24px; border-radius:8px; font-size:14px; font-weight:500; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; text-decoration:none; display:inline-block; white-space:nowrap; }
+  .btn-teal:hover { background:#0F6E56; }
+
+  footer { background:var(--navy); padding:40px 48px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-logo { font-family:'Fraunces',serif; font-size:18px; font-weight:700; color:#fff; }
+  .footer-logo span { color:var(--teal-mid); }
+  .footer-links { display:flex; gap:24px; list-style:none; }
+  .footer-links a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:13px; }
+  .footer-copy { font-size:13px; color:rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">AI Ready <span>Schools</span></a>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="active">Blog</a></li>
+    <li><a href="#">Resources</a></li>
+    <li><a href="#">For Leaders</a></li>
+    <li><a href="landing-page-free-guide.html" class="nav-cta">Get the guide</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Home <span>/ Blog</span></div>
+  <h1>Thinking clearly about <em>AI in schools.</em></h1>
+  <p>Practical, policy-grounded articles for school leaders navigating AI — written by someone in the staffroom, not the boardroom.</p>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterPosts('all', this)">All posts</button>
+    <button class="filter-btn" onclick="filterPosts('policy', this)">Policy</button>
+    <button class="filter-btn" onclick="filterPosts('leadership', this)">Leadership</button>
+    <button class="filter-btn" onclick="filterPosts('workload', this)">Workload</button>
+  </div>
+</div>
+
+<div class="blog-body">
+
+  <!-- FEATURED -->
+  <a href="blog-staff-first-strategy.html" class="featured-post" data-category="leadership">
+    <div class="featured-thumb">🏫</div>
+    <div class="featured-body">
+      <div class="featured-eyebrow">
+        <span class="post-tag">Leadership</span>
+        <span class="featured-label">Featured article</span>
+      </div>
+      <div class="featured-title">Why your AI strategy needs to start with your staff, not your software</div>
+      <div class="featured-excerpt">Most school AI rollouts follow the same pattern — a tool gets chosen, a training session gets booked, and then nothing much changes. The reason is almost always the same: the software came before the people.</div>
+      <div class="post-meta">
+        <span>8 min read</span>
+        <div class="post-meta-dot"></div>
+        <span>October 2025</span>
+        <div class="post-meta-dot"></div>
+        <span>Leadership &amp; Strategy</span>
+      </div>
+      <div class="read-more">Read the article →</div>
+    </div>
+  </a>
+
+  <!-- ALL POSTS -->
+  <div class="section-divider">
+    <div class="section-divider-label">All articles</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="posts-grid" id="posts-grid">
+
+    <a href="blog-kcsie-2025.html" class="post-card" data-category="policy">
+      <div class="post-thumb navy">📋</div>
+      <div class="post-card-body">
+        <div class="post-card-tag-row">
+          <span class="post-tag">Policy</span>
+          <span style="font-size:12px; color:var(--text-light);">5 min read</span>
+        </div>
+        <div class="post-card-title">What KCSIE 2025 says about generative AI — and what it means for your school</div>
+        <div class="post-card-excerpt">For the first time, generative AI is explicitly referenced in the statutory safeguarding guidance. Here's what it actually says.</div>
+        <div class="post-card-meta">
+          <span>September 2025</span>
+          <span>·</span>
+          <span>Safeguarding &amp; Policy</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="blog-staff-first-strategy.html" class="post-card" data-category="leadership">
+      <div class="post-thumb teal">👥</div>
+      <div class="post-card-body">
+        <div class="post-card-tag-row">
+          <span class="post-tag">Leadership</span>
+          <span style="font-size:12px; color:var(--text-light);">8 min read</span>
+        </div>
+        <div class="post-card-title">Why your AI strategy needs to start with your staff, not your software</div>
+        <div class="post-card-excerpt">Technology should serve your school community — not the other way around. Here's how to get the sequence right.</div>
+        <div class="post-card-meta">
+          <span>October 2025</span>
+          <span>·</span>
+          <span>Leadership &amp; Strategy</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="blog-ai-tasks-teachers.html" class="post-card" data-category="workload">
+      <div class="post-thumb amber">⚡</div>
+      <div class="post-card-body">
+        <div class="post-card-tag-row">
+          <span class="post-tag amber">Workload</span>
+          <span style="font-size:12px; color:var(--text-light);">6 min read</span>
+        </div>
+        <div class="post-card-title">5 tasks teachers can hand to AI today — without the guilt</div>
+        <div class="post-card-excerpt">AI can meaningfully reduce teacher workload when used properly. Here are five safe, practical places to start.</div>
+        <div class="post-card-meta">
+          <span>November 2025</span>
+          <span>·</span>
+          <span>Workload &amp; Practice</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div>
+      <h3>Not sure where your school stands on AI readiness?</h3>
+      <p>Download the free AI Readiness Checklist — 20 practical questions across 5 key areas, written for school leaders.</p>
+    </div>
+    <a href="landing-page-free-guide.html" class="btn-teal">Get the free checklist</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">AI Ready <span>Schools</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2025 AI Ready Schools</div>
+</footer>
+
+<script>
+  function filterPosts(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.post-card').forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
